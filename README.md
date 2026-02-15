@@ -1,6 +1,6 @@
 ![Python Version](https://img.shields.io/badge/python-3.9%2B-blue?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-0.2.0-orange)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/yenksid/nexus_cli?color=orange)
 ![Build Status](https://github.com/yenksid/nexus_cli/actions/workflows/ci.yml/badge.svg)
 ![Format](https://img.shields.io/badge/format-Markdown-blue)
 
