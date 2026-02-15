@@ -97,6 +97,20 @@ The project includes an end-to-end Automated Test Suite verifying the entire pip
 ```bash
 python tests/run_tests.py
 ```
+## 🗺️ Project Roadmap
+We are actively building the future of context orchestration. You can track our progress through our GitHub Issues.
+
+- [ ] **Phase 1: Infrastructure** (#4)  
+  Implement a fully automated changelog and release pipeline using Conventional Commits.
+
+- [ ] **Phase 2: Semantic Intelligence** (#1)  
+  Integrate LLMs to generate automated semantic summaries of project architectures.
+
+- [ ] **Phase 3: Context Filtering** (#2)  
+  Add task-based API integration to intelligently select only relevant files for a specific scan.
+
+- [ ] **Phase 4: Advanced Retrieval (RAG)** (#3)  
+  Bridge Nexus CLI with OpenRAG to enable semantic querying and vector-based context retrieval.
 
 ## 📄 License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
