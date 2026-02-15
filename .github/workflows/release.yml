@@ -12,5 +12,5 @@ jobs:
     steps:
       - uses: googleapis/release-please-action@v4
         with:
-          release-type: simple # Or 'python' if you add a version file
+          # If we don't use 'release-type' here, the bot will automatically look for the configuration files in the root of the repo.
           token: ${{ secrets.GITHUB_TOKEN }}
