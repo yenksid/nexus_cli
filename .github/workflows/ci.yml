@@ -31,5 +31,7 @@ jobs:
         pip install .
 
     - name: Run E2E Test Suite
+      env:
+        PYTHONIOENCODING: utf-8 # Force UTF-8 to prevent Windows console errors
       run: |
         python tests/run_tests.py
