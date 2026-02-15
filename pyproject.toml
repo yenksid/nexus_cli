@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nexus-cli"
+version = "0.2.0"
+description = "A powerful suite of CLI tools for AI context scanning and project scaffolding."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "pandas",
+  "Pillow",
+  "pypdf",
+  "tiktoken",
+  "pyperclip",
+  "rich"
+]
+
+[project.scripts]
+nexus = "nexus_cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

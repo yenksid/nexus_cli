@@ -1,0 +1,48 @@
+# =========================
+# Python & Virtual Environments
+# =========================
+venv/
+env/
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# =========================
+# Packaging & Build (pip & PyInstaller)
+# =========================
+build/
+dist/
+*.egg-info/
+*.spec
+MANIFEST
+
+# =========================
+# Nexus CLI Generated & Test Files
+# =========================
+# Carpetas de pruebas
+test_output/
+
+# Reportes de contexto (variaciones de nombre y timestamps)
+CURRENT_CONTEXT.md
+NEXUS_REPORT.md
+NEXUS_CONTEXT.md
+CONTEXT.md
+context_*.md
+nexus_report_*.md
+
+# Configuración local generada
+nexus.json
+
+# Archivos de entrada/salida del Scaffolding
+tree.txt
+*_plan.json
+
+# =========================
+# OS & IDE Settings
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
