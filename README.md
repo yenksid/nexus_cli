@@ -5,7 +5,7 @@
 ![Format](https://img.shields.io/badge/format-Markdown-blue)
 
 # Nexus CLI 🌌
-**Version: 0.2.0**
+**Version: 0.3.0**
 
 A powerful, unified Command Line Interface (CLI) suite designed for AI-driven development, project scaffolding, and context generation. 
 
