@@ -26,8 +26,11 @@ WINDOWS_RESERVED = {
     *(f"LPT{i}" for i in range(1, 10)),
 }
 
-CONNECTOR_RE = re.compile(r"^(├──|└──|\+--|\|--|`--)\s*")
-CONNECTOR_FUZZY_RE = re.compile(r"(├──|└──|\+--|\|--|`--)\s*")
+# Change these to include the single dash version
+CONNECTOR_RE = re.compile(r"^(├──|├─|└──|└─|\+--|\|--|`--)\s*")
+CONNECTOR_FUZZY_RE = re.compile(r"(├──|├─|└──|└─|\+--|\|--|`--)\s*")
+# CONNECTOR_RE = re.compile(r"^(├──|└──|\+--|\|--|`--)\s*")
+# CONNECTOR_FUZZY_RE = re.compile(r"(├──|└──|\+--|\|--|`--)\s*")
 
 # --- AUTOMATIC BOILERPLATES ---
 BOILERPLATES = {
@@ -72,36 +75,31 @@ def strip_inline_notes(s: str) -> str:
     return s.strip()
 
 def count_tree_depth(line: str) -> Tuple[int, str]:
-    line = line.expandtabs(4)
-    depth = 0
-    i = 0
-    while i < len(line):
-        if line[i:i+4] in ("│   ", "    ", "|   "):
-            depth += 1
-            i += 4
-        elif line[i:i+2] == "  ":
-            depth += 1
-            i += 2
-        else:
-            break
-    return depth, line[i:]
+    expanded = line.expandtabs(4)
+    # Match any combination of tree pipes and spaces at the start
+    prefix_match = re.match(r"^([│\s|]*)", expanded)
+    prefix = prefix_match.group(1) if prefix_match else ""
+    
+    # Each level in your tree looks like 2 or 3 characters (e.g., "│  ")
+    # We'll normalize this by integer dividing the prefix length
+    depth = len(prefix) // 2 
+    return depth, expanded[len(prefix):]
 
 def extract_name_from_line(line: str) -> Optional[Entry]:
     depth, rest = count_tree_depth(line)
-    rest = rest.lstrip()
     
-    m = CONNECTOR_RE.match(rest)
-    if not m:
-        m2 = CONNECTOR_FUZZY_RE.search(rest)
-        if not m2: return None
-        name_part = rest[m2.end():]
-    else:
-        name_part = rest[m.end():]
-
+    # Remove the connector (├─, └─, etc.)
+    name_part = CONNECTOR_FUZZY_RE.sub("", rest).strip()
     name_part = strip_inline_notes(name_part)
-    if not name_part: return None
     
-    return Entry(depth=depth, raw_name=name_part, is_dir_hint=name_part.endswith("/"))
+    if not name_part:
+        return None
+        
+    return Entry(
+        depth=depth, 
+        raw_name=name_part, 
+        is_dir_hint=name_part.endswith("/") or "." not in name_part
+    )
 
 def parse_tree(lines: List[str]) -> Tuple[str, List[Entry]]:
     non_empty = [l for l in lines if l.strip()]
